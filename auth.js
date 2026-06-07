@@ -83,9 +83,65 @@
     const provider = new firebase.auth.GoogleAuthProvider();
     try {
       await window.firebaseAuth.signInWithPopup(provider);
+      window.hideLoginModal();
     } catch (error) {
       console.error("谷歌登录失败：", error);
       alert("登录失败：" + error.message);
+    }
+  };
+
+  // Email/Password 登录方法
+  window.loginWithEmail = async function () {
+    if (typeof firebase === 'undefined' || !window.firebaseAuth) {
+      alert("Firebase 尚未配置正确，无法进行云端登录。");
+      return;
+    }
+    const emailInput = document.getElementById('login-email');
+    const passwordInput = document.getElementById('login-password');
+    if (!emailInput || !passwordInput) return;
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+    if (!email || !password) {
+      alert("请填写邮箱和密码！");
+      return;
+    }
+
+    try {
+      await window.firebaseAuth.signInWithEmailAndPassword(email, password);
+      window.hideLoginModal();
+    } catch (error) {
+      console.error("邮箱登录失败：", error);
+      alert("登录失败：" + error.message);
+    }
+  };
+
+  // Email/Password 注册方法
+  window.registerWithEmail = async function () {
+    if (typeof firebase === 'undefined' || !window.firebaseAuth) {
+      alert("Firebase 尚未配置正确，无法进行云端注册。");
+      return;
+    }
+    const emailInput = document.getElementById('login-email');
+    const passwordInput = document.getElementById('login-password');
+    if (!emailInput || !passwordInput) return;
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+    if (!email || !password) {
+      alert("请填写邮箱和密码！");
+      return;
+    }
+
+    try {
+      await window.firebaseAuth.createUserWithEmailAndPassword(email, password);
+      alert("注册成功并已自动登录！");
+      window.hideLoginModal();
+    } catch (error) {
+      console.error("注册失败：", error);
+      alert("注册失败：" + error.message);
     }
   };
 

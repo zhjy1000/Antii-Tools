@@ -357,21 +357,37 @@
   <!-- 登录弹窗 (Login Modal) -->
   <div class="modal hidden" id="login-modal">
     <div class="modal-backdrop" id="login-backdrop" onclick="hideLoginModal()"></div>
-    <div class="modal-wrapper login-wrapper" style="max-width: 400px; background: #1f2937; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);">
+    <div class="modal-wrapper login-wrapper" style="max-width: 400px; background: #1f2937; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); overflow: hidden;">
       <div class="modal-header" style="border-bottom: 1px solid rgba(255,255,255,0.08); padding: 1.2rem 1.5rem; display: flex; justify-content: space-between; align-items: center;">
-        <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 8px; color: #f3f4f6;"><i class="fa-solid fa-user-lock" style="color: #6366f1;"></i> 登录 Antii Tools</h3>
+        <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 8px; color: #f3f4f6;"><i class="fa-solid fa-user-lock" style="color: #6366f1;"></i> 登录 / 注册</h3>
         <button onclick="hideLoginModal()" class="modal-close-btn" style="background: none; border: none; color: #9ca3af; font-size: 1.8rem; cursor: pointer; line-height: 1;">&times;</button>
       </div>
-      <div class="modal-body login-body" style="display: flex; flex-direction: column; gap: 20px; text-align: center; padding: 30px;">
-        <i class="fa-solid fa-circle-user" style="font-size: 4rem; color: #6366f1; margin: 0 auto;"></i>
-        <p style="color: #9ca3af; font-size: 0.9rem; margin-top: -10px; line-height: 1.5;">登录后可跨端同步您的专业版 (Pro) 订阅状态，保存您的配置预设。</p>
+      <div class="modal-body login-body" style="display: flex; flex-direction: column; gap: 15px; padding: 25px; text-align: left;">
+        <p style="color: #9ca3af; font-size: 0.85rem; line-height: 1.5; text-align: center; margin-bottom: 5px;">登录后可跨端同步您的专业版 (Pro) 订阅状态，保存配置。</p>
         
-        <button onclick="loginWithGoogle()" class="btn btn-google-login" style="background: white; color: #1f2937; border: 1px solid #d1d5db; padding: 12px; border-radius: 8px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; transition: background 0.2s; font-size: 0.95rem; width: 100%;">
-          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="google" style="width: 18px; height: 18px;">
+        <!-- 邮箱/密码表单 -->
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <input type="email" id="login-email" placeholder="电子邮箱 (Email)" style="width: 100%; padding: 10px 14px; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; color: #f3f4f6; outline: none; font-size: 0.9rem;">
+          <input type="password" id="login-password" placeholder="密码 (Password)" style="width: 100%; padding: 10px 14px; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; color: #f3f4f6; outline: none; font-size: 0.9rem;">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 5px;">
+          <button onclick="loginWithEmail()" class="btn" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); color: white; padding: 10px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; border: none; cursor: pointer; text-align: center;">登录</button>
+          <button onclick="registerWithEmail()" class="btn btn-outline" style="background: rgba(255,255,255,0.03); color: #f3f4f6; border: 1px solid rgba(255,255,255,0.1); padding: 10px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; cursor: pointer; text-align: center;">注册账号</button>
+        </div>
+
+        <!-- 分割线 -->
+        <div style="display: flex; align-items: center; text-align: center; color: #6b7280; font-size: 0.75rem; margin: 5px 0;">
+          <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.08);"></div>
+          <span style="padding: 0 10px;">或</span>
+          <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.08);"></div>
+        </div>
+
+        <!-- 谷歌登录 -->
+        <button onclick="loginWithGoogle()" class="btn btn-google-login" style="background: white; color: #1f2937; border: 1px solid #d1d5db; padding: 10px; border-radius: 6px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: background 0.2s; font-size: 0.9rem; width: 100%;">
+          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="google" style="width: 16px; height: 16px;">
           使用 Google 账号登录
         </button>
-        
-        <p style="font-size: 0.75rem; color: #6b7280; display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 5px;"><i class="fa-solid fa-shield-halved" style="color: #10b981;"></i> 您的身份 data 直接由 Google 安全身份认证保障</p>
       </div>
     </div>
   </div>
