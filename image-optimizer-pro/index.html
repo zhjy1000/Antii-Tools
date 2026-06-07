@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>图片极客压缩 - 免费批量在线图片压缩与格式转换</title>
   <meta name="description" content="免费、安全且私密的纯客户端在线图片压缩工具。支持批量压缩 JPG、PNG、WebP 格式，自定义压缩质量与输出格式，无服务器上传，100% 保护隐私。">
+  <link rel="canonical" href="https://antii-tools.vercel.app/image-optimizer-pro/index.html">
   
   <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
   
   <!-- Google Fonts: Inter & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,15 +43,8 @@
     <div class="ad-placeholder">
       <span class="ad-badge">广告赞助</span>
       <!-- Google AdSense 广告位 -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-           data-ad-slot="XXXXXXXXXX"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
+      <!-- TODO: 上线申请通过后替换为真实 AdSense client 与 slot。 -->
+      <p class="ad-config-note">广告位待配置</p>
     </div>
   </div>
 
@@ -136,15 +129,8 @@
             <div class="ad-placeholder">
               <span class="ad-badge">广告赞助</span>
               <!-- Google AdSense 广告位 -->
-              <ins class="adsbygoogle"
-                   style="display:block"
-                   data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                   data-ad-slot="XXXXXXXXXX"
-                   data-ad-format="auto"
-                   data-full-width-responsive="true"></ins>
-              <script>
-                   (adsbygoogle = window.adsbygoogle || []).push({});
-              </script>
+      <!-- TODO: 上线申请通过后替换为真实 AdSense client 与 slot。 -->
+      <p class="ad-config-note">广告位待配置</p>
             </div>
           </div>
         </section>
@@ -197,20 +183,19 @@
     <div class="ad-placeholder">
       <span class="ad-badge">广告赞助</span>
       <!-- Google AdSense 广告位 -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-           data-ad-slot="XXXXXXXXXX"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
+      <!-- TODO: 上线申请通过后替换为真实 AdSense client 与 slot。 -->
+      <p class="ad-config-note">广告位待配置</p>
     </div>
   </div>
 
   <footer class="footer">
     <div class="footer-container">
+      <div class="footer-links">
+        <a href="../about.html">关于我们</a>
+        <a href="../privacy.html">隐私政策</a>
+        <a href="../terms.html">服务条款</a>
+        <a href="../contact.html">联系我们</a>
+      </div>
       <p>&copy; 2026 图片极客压缩. 纯客户端安全工具，所有计算均在您的浏览器本地进行，绝不上传您的任何数据。</p>
     </div>
   </footer>
@@ -244,12 +229,12 @@
             <tr>
               <td>单张图片大小限制</td>
               <td>5 MB</td>
-              <td class="highlight-emerald font-bold">无限制 (支持大图)</td>
+              <td class="highlight-emerald font-bold">更高上限 (取决于浏览器内存)</td>
             </tr>
             <tr>
               <td>格式转换支持</td>
               <td>JPG / PNG / WebP</td>
-              <td class="highlight-emerald font-bold">JPG / PNG / WebP / AVIF (更高效)</td>
+              <td class="highlight-emerald font-bold">JPG / PNG / WebP</td>
             </tr>
             <tr>
               <td>服务器上传</td>
@@ -287,20 +272,19 @@
           </button>
         </div>
 
-        <!-- 模拟扫码区域 -->
+        <!-- 支付接入提示区域 -->
         <div class="qr-pay-section">
           <div class="pay-qr-container">
             <div class="mock-qr" id="mock-pay-qr">
-              <!-- JS 渲染支付二维码 -->
               <i class="fa-solid fa-qrcode"></i>
             </div>
-            <p class="qr-tip">请使用手机扫码支付 (测试模式)</p>
+            <p class="qr-tip">支付功能尚未接入</p>
           </div>
           <div class="pay-actions">
             <button id="btn-simulate-success" class="btn btn-primary btn-pay-success">
-              <i class="fa-solid fa-circle-check"></i> 我已完成支付 (模拟测试)
+              <i class="fa-solid fa-circle-info"></i> 查看接入提示
             </button>
-            <p class="pay-security-tip"><i class="fa-solid fa-shield-halved"></i> 支付由安全沙箱模拟提供，不会扣除真实费用</p>
+            <p class="pay-security-tip"><i class="fa-solid fa-shield-halved"></i> 会员状态需由可信支付回调或管理端写入</p>
           </div>
         </div>
       </div>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>二维码纠错等级怎么选 - Antii Tools 指南</title>
+  <meta name="description" content="了解二维码 L、M、Q、H 四种纠错等级的区别，学习如何根据 Logo、印刷尺寸和扫码场景选择参数。">
+  <link rel="canonical" href="https://antii-tools.vercel.app/guides/qr-error-correction-guide.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "二维码纠错等级怎么选",
+    "description": "了解二维码 L、M、Q、H 四种纠错等级的区别。",
+    "author": { "@type": "Organization", "name": "Antii Tools" },
+    "publisher": { "@type": "Organization", "name": "Antii Tools" },
+    "inLanguage": "zh-CN"
+  }
+  </script>
+</head>
+<body>
+  <div class="glow-bg-container">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="logo logo-link">
+        <i class="fa-solid fa-screwdriver-wrench icon-gradient"></i>
+        <span class="logo-text">Antii<span class="highlight">Tools</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#tools" class="nav-link">工具</a>
+        <a href="../index.html#guides" class="nav-link">指南</a>
+        <a href="../privacy.html" class="nav-link">隐私</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <article class="content-page guide-page">
+      <span class="eyebrow">QR Guide</span>
+      <h1>二维码纠错等级怎么选</h1>
+      <p>二维码并不是越复杂越好。纠错等级越高，二维码能承受的遮挡越多，但图案也会更密集，内容太长时反而影响扫码体验。</p>
+
+      <section>
+        <h2>四种纠错等级</h2>
+        <ul>
+          <li>L：约 7% 容错，适合简单链接、屏幕展示。</li>
+          <li>M：约 15% 容错，适合大多数普通二维码。</li>
+          <li>Q：约 25% 容错，适合轻微遮挡或小尺寸印刷。</li>
+          <li>H：约 30% 容错，适合中心 Logo 或复杂使用场景。</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>什么时候需要高纠错</h2>
+        <p>如果你要在二维码中心放 Logo，或者二维码会出现在海报、包装、名片这类可能有磨损和反光的介质上，建议使用 Q 或 H。只是在网页上展示普通链接时，M 往往已经足够。</p>
+      </section>
+
+      <section>
+        <h2>Logo 不宜过大</h2>
+        <p>Logo 会遮挡二维码模块。即使用高纠错等级，Logo 也不建议超过二维码宽度的 20%-25%。Logo 周围留出背景色边框，可以显著提升扫码稳定性。</p>
+        <div class="guide-callout">
+          <strong>实用规则：</strong>有 Logo 用 Q/H；无 Logo 用 M；内容越长，越要测试真实扫码效果。
+        </div>
+      </section>
+
+      <section>
+        <h2>导出前测试</h2>
+        <ol>
+          <li>用至少两台手机扫码。</li>
+          <li>在正常距离和稍远距离各扫一次。</li>
+          <li>如果用于印刷，打印小样后再确认。</li>
+          <li>避免前景色和背景色对比过低。</li>
+        </ol>
+      </section>
+
+      <section class="guide-cta">
+        <h2>生成二维码</h2>
+        <p>二维码工坊支持调整颜色、边距和纠错等级，并可导出 PNG 或复制 SVG 代码。</p>
+        <a href="../qr-code-forge/index.html" class="btn-hero btn-hero-primary"><i class="fa-solid fa-qrcode"></i> 打开二维码工具</a>
+      </section>
+    </article>
+  </main>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="../about.html">关于我们</a>
+        <a href="../privacy.html">隐私政策</a>
+        <a href="../terms.html">服务条款</a>
+        <a href="../contact.html">联系我们</a>
+      </div>
+      <p>&copy; 2026 Antii Tools.</p>
+    </div>
+  </footer>
+</body>
+</html>

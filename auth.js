@@ -3,6 +3,30 @@
  */
 
 (function () {
+  const DEFAULT_AVATAR = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
+
+  function escapeHtml(value) {
+    return String(value || '').replace(/[&<>"']/g, (char) => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    }[char]));
+  }
+
+  function sanitizeImageUrl(value) {
+    const url = String(value || '').trim();
+    if (!url) return DEFAULT_AVATAR;
+
+    try {
+      const parsed = new URL(url, window.location.href);
+      return ['http:', 'https:'].includes(parsed.protocol) ? parsed.href : DEFAULT_AVATAR;
+    } catch (err) {
+      return DEFAULT_AVATAR;
+    }
+  }
+
   // 全局共享状态
   window.currentUserState = {
     user: null,
@@ -13,10 +37,9 @@
   // 认证变化监听器
   document.addEventListener('DOMContentLoaded', () => {
     if (typeof firebase === 'undefined' || !window.firebaseAuth) {
-      console.warn("Firebase Auth 未初始化，启用本地降级模式（仅使用 localStorage）");
-      // 降级本地存储兼容模式
+      console.warn("Firebase Auth 未初始化，会员功能保持免费版模式");
       window.currentUserState.loaded = true;
-      window.currentUserState.isPremium = localStorage.getItem('geek_tools_premium') === 'true';
+      window.currentUserState.isPremium = false;
       updateNavbarUI(null);
       return;
     }
@@ -50,9 +73,8 @@
             window.currentUserState.isPremium = !!data.is_premium;
           }
         } catch (err) {
-          console.error("从 Firestore 获取用户资料失败，启用本地存储降级：", err);
-          // 数据库权限错误或网络错误时，降级读取本地存储以保证基本可用性
-          window.currentUserState.isPremium = localStorage.getItem('geek_tools_premium') === 'true';
+          console.error("从 Firestore 获取用户资料失败，已按免费版处理：", err);
+          window.currentUserState.isPremium = false;
         }
       } else {
         window.currentUserState.user = null;
@@ -148,8 +170,6 @@
   // 登出方法
   window.logoutUser = async function () {
     if (typeof firebase === 'undefined' || !window.firebaseAuth) {
-      // 降级模式清空本地
-      localStorage.removeItem('geek_tools_premium');
       window.currentUserState.user = null;
       window.currentUserState.isPremium = false;
       location.reload();
@@ -183,22 +203,22 @@
     });
   };
 
-  // 激活 Pro 状态 (模拟支付成功后调用)
+  // 激活 Pro 状态。生产环境应由可信支付回调或管理员流程调用。
   window.setUserPremiumStatus = async function (status) {
-    window.currentUserState.isPremium = status;
-    // 兼容本地存储，即使断网也能继续使用
-    localStorage.setItem('geek_tools_premium', status ? 'true' : 'false');
-
     const user = window.currentUserState.user;
-    if (user && window.firebaseDb) {
-      try {
-        await window.firebaseDb.collection('users').doc(user.uid).update({
-          is_premium: status,
-          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
-      } catch (err) {
-        console.error("同步至 Firestore 会员状态失败：", err);
-      }
+    if (!user || !window.firebaseDb) {
+      throw new Error("请先完成云端登录，并配置 Firebase 后再更新会员状态。");
+    }
+
+    try {
+      await window.firebaseDb.collection('users').doc(user.uid).update({
+        is_premium: !!status,
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      window.currentUserState.isPremium = !!status;
+    } catch (err) {
+      console.error("同步至 Firestore 会员状态失败：", err);
+      throw err;
     }
   };
 
@@ -213,8 +233,8 @@
 
     let userHtml = '';
     if (user) {
-      const avatar = user.photoURL || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
-      const name = user.displayName || user.email.split('@')[0] || '用户';
+      const avatar = escapeHtml(sanitizeImageUrl(user.photoURL));
+      const name = escapeHtml(user.displayName || (user.email || '').split('@')[0] || '用户');
       const isPro = window.currentUserState.isPremium;
       
       userHtml = `
@@ -298,5 +318,3 @@
     }
   });
 })();
-
-

@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let addedAny = false;
 
     // Cloud-synced/Local Freemium checks
-    const isPremium = window.currentUserState ? window.currentUserState.isPremium : (localStorage.getItem('geek_tools_premium') === 'true');
+    const isPremium = window.currentUserState ? window.currentUserState.isPremium : false;
     if (!isPremium) {
       // 1. File count limit: max 5 files total
       if (filesList.length + files.length > 5) {
@@ -206,15 +206,26 @@ document.addEventListener('DOMContentLoaded', () => {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
   }
 
+  function escapeHtml(value) {
+    return String(value || '').replace(/[&<>"']/g, (char) => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    }[char]));
+  }
+
   // Render Image Item Placeholder
   function renderImageItem(item) {
+    const safeName = escapeHtml(item.name);
     const itemHtml = `
       <div class="image-item" id="item-${item.id}">
         <div class="img-preview-col">
           <img src="${item.originalUrl}" alt="Preview">
         </div>
         <div class="img-info-col">
-          <div class="img-filename" title="${item.name}">${item.name}</div>
+          <div class="img-filename" title="${safeName}">${safeName}</div>
           <div class="img-sizes">
             <span class="size-original">${formatSize(item.originalSize)}</span>
             <i class="fa-solid fa-arrow-right size-arrow"></i>
@@ -503,15 +514,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (btnSimulateSuccess) {
-    btnSimulateSuccess.addEventListener('click', async () => {
-      if (window.setUserPremiumStatus) {
-        await window.setUserPremiumStatus(true);
-      } else {
-        localStorage.setItem('geek_tools_premium', 'true');
-      }
-      alert('恭喜！您已成功模拟支付解锁 Antii Tools 专业版 Pro！页面即将刷新以生效特权。');
-      closePaywall();
-      location.reload();
+    btnSimulateSuccess.addEventListener('click', () => {
+      alert('支付功能尚未接入。请先配置真实支付回调，并在服务端或 Firestore 管理端更新会员状态。');
     });
   }
 });

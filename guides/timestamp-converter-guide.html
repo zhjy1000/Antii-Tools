@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unix 时间戳、毫秒和 ISO 时间怎么转换 - Antii Tools 指南</title>
+  <meta name="description" content="学习 Unix 秒、毫秒时间戳、ISO 时间和本地时间的区别，避免接口、日志和数据库中的时间转换错误。">
+  <link rel="canonical" href="https://antii-tools.vercel.app/guides/timestamp-converter-guide.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Unix 时间戳、毫秒和 ISO 时间怎么转换",
+    "description": "学习 Unix 秒、毫秒时间戳、ISO 时间和本地时间的区别。",
+    "author": { "@type": "Organization", "name": "Antii Tools" },
+    "publisher": { "@type": "Organization", "name": "Antii Tools" },
+    "inLanguage": "zh-CN"
+  }
+  </script>
+</head>
+<body>
+  <div class="glow-bg-container">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="logo logo-link">
+        <i class="fa-solid fa-screwdriver-wrench icon-gradient"></i>
+        <span class="logo-text">Antii<span class="highlight">Tools</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#tools" class="nav-link">工具</a>
+        <a href="../index.html#guides" class="nav-link">指南</a>
+        <a href="../privacy.html" class="nav-link">隐私</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <article class="content-page guide-page">
+      <span class="eyebrow">Time Guide</span>
+      <h1>Unix 时间戳、毫秒和 ISO 时间怎么转换</h1>
+      <p>时间字段看起来简单，却经常因为秒和毫秒、UTC 和本地时区混用而出错。理解几种常见格式，可以少踩很多接口和日志排查的坑。</p>
+
+      <section>
+        <h2>Unix 秒和毫秒的区别</h2>
+        <p>Unix 时间戳表示从 1970-01-01 00:00:00 UTC 到某一刻经过的时间。10 位数字通常是秒，13 位数字通常是毫秒。把毫秒当秒会得到一个遥远未来的时间，把秒当毫秒则会落到 1970 年附近。</p>
+      </section>
+
+      <section>
+        <h2>ISO 时间适合接口传输</h2>
+        <p>ISO 字符串通常长这样：<code>2026-06-07T12:00:00.000Z</code>。末尾的 <code>Z</code> 表示 UTC 时间。它可读性更好，也减少了单位不明确的问题。</p>
+      </section>
+
+      <section>
+        <h2>本地时间和 UTC 不一样</h2>
+        <p>浏览器显示的本地时间会根据用户所在时区变化，而 UTC 是统一标准时间。跨地区用户、服务器日志和数据库字段通常更适合使用 UTC 存储，再在前端按用户时区展示。</p>
+      </section>
+
+      <section>
+        <h2>排查时间问题的步骤</h2>
+        <ol>
+          <li>先判断字段是秒还是毫秒。</li>
+          <li>确认后端返回的是 UTC 还是本地时间。</li>
+          <li>检查浏览器、服务器和数据库时区。</li>
+          <li>显示给用户前再转换成本地格式。</li>
+        </ol>
+      </section>
+
+      <section class="guide-cta">
+        <h2>打开时间戳转换器</h2>
+        <p>快速互转 Unix 秒、毫秒、ISO 和本地日期时间。</p>
+        <a href="../timestamp-converter/index.html" class="btn-hero btn-hero-primary"><i class="fa-solid fa-clock"></i> 打开时间戳工具</a>
+      </section>
+    </article>
+  </main>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="../about.html">关于我们</a>
+        <a href="../privacy.html">隐私政策</a>
+        <a href="../terms.html">服务条款</a>
+        <a href="../contact.html">联系我们</a>
+      </div>
+      <p>&copy; 2026 Antii Tools.</p>
+    </div>
+  </footer>
+</body>
+</html>

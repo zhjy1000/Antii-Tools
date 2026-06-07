@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON 格式化与压缩 - Antii Tools</title>
+  <meta name="description" content="免费的浏览器端 JSON 格式化、压缩、校验工具。支持复制、下载、错误定位与示例数据。">
+  <link rel="canonical" href="https://antii-tools.vercel.app/json-formatter/index.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="glow-bg-container">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="logo logo-link">
+        <i class="fa-solid fa-screwdriver-wrench icon-gradient"></i>
+        <span class="logo-text">Antii<span class="highlight">Tools</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#tools" class="nav-link">全部工具</a>
+        <a href="../timestamp-converter/index.html" class="nav-link">时间戳转换</a>
+        <a href="../uuid-generator/index.html" class="nav-link">UUID</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="tool-shell">
+      <header class="tool-hero">
+        <span class="eyebrow"><i class="fa-solid fa-code"></i> JSON Tool</span>
+        <h1>JSON 格式化与压缩</h1>
+        <p>粘贴 JSON，快速校验、格式化、压缩、复制或下载。所有内容都在浏览器中处理。</p>
+      </header>
+
+      <section class="tool-workbench">
+        <div class="tool-panel">
+          <div class="tool-panel-header">
+            <h2>输入 JSON</h2>
+            <button class="tool-btn ghost" id="btn-load-sample"><i class="fa-solid fa-flask"></i> 示例</button>
+          </div>
+          <textarea id="json-input" class="tool-textarea" spellcheck="false" placeholder='{"name":"Antii Tools","type":"toolkit"}'></textarea>
+        </div>
+
+        <div class="tool-panel">
+          <div class="tool-panel-header">
+            <h2>输出结果</h2>
+            <span class="tool-status" id="json-status">等待输入</span>
+          </div>
+          <textarea id="json-output" class="tool-textarea" spellcheck="false" readonly placeholder="格式化结果会显示在这里"></textarea>
+        </div>
+      </section>
+
+      <section class="tool-actions-bar">
+        <button class="tool-btn primary" id="btn-format"><i class="fa-solid fa-wand-magic-sparkles"></i> 格式化</button>
+        <button class="tool-btn" id="btn-minify"><i class="fa-solid fa-compress"></i> 压缩</button>
+        <button class="tool-btn" id="btn-copy"><i class="fa-solid fa-copy"></i> 复制结果</button>
+        <button class="tool-btn" id="btn-download"><i class="fa-solid fa-download"></i> 下载 JSON</button>
+        <button class="tool-btn danger" id="btn-clear"><i class="fa-solid fa-trash-can"></i> 清空</button>
+      </section>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="../about.html">关于我们</a>
+        <a href="../privacy.html">隐私政策</a>
+        <a href="../terms.html">服务条款</a>
+        <a href="../contact.html">联系我们</a>
+      </div>
+      <p>&copy; 2026 Antii Tools.</p>
+    </div>
+  </footer>
+</body>
+</html>

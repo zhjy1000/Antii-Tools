@@ -27,9 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let logoImage = null;
   let logoName = '';
 
-  // Helper to check premium status dynamically (Cloud-synced or Local fallback)
+  // Helper to check premium status dynamically from the shared auth state.
   function isPremium() {
-    return window.currentUserState ? window.currentUserState.isPremium : (localStorage.getItem('geek_tools_premium') === 'true');
+    return window.currentUserState ? window.currentUserState.isPremium : false;
   }
   
   // Accordion Logic
@@ -334,15 +334,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (btnSimulateSuccess) {
-    btnSimulateSuccess.addEventListener('click', async () => {
-      if (window.setUserPremiumStatus) {
-        await window.setUserPremiumStatus(true);
-      } else {
-        localStorage.setItem('geek_tools_premium', 'true');
-      }
-      alert('恭喜！您已成功模拟支付解锁 Antii Tools 专业版 Pro！页面即将刷新以生效特权。');
-      closePaywall();
-      location.reload();
+    btnSimulateSuccess.addEventListener('click', () => {
+      alert('支付功能尚未接入。请先配置真实支付回调，并在服务端或 Firestore 管理端更新会员状态。');
     });
   }
 });

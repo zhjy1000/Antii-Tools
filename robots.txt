@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://antii-tools.vercel.app/sitemap.xml

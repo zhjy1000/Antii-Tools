@@ -1098,6 +1098,30 @@ select:focus {
   gap: 4px;
 }
 
+.ad-config-note {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.footer-links a:hover {
+  color: var(--text-main);
+}
+
 @media (max-width: 600px) {
   .price-cards, 
   .payment-methods {

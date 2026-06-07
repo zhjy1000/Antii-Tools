@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>如何压缩图片又不明显损失画质 - Antii Tools 指南</title>
+  <meta name="description" content="学习如何选择 JPG、PNG、WebP 图片压缩参数，理解质量、尺寸、格式转换对文件体积和清晰度的影响。">
+  <link rel="canonical" href="https://antii-tools.vercel.app/guides/image-compression-guide.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "如何压缩图片又不明显损失画质",
+    "description": "学习如何选择 JPG、PNG、WebP 图片压缩参数。",
+    "author": { "@type": "Organization", "name": "Antii Tools" },
+    "publisher": { "@type": "Organization", "name": "Antii Tools" },
+    "inLanguage": "zh-CN"
+  }
+  </script>
+</head>
+<body>
+  <div class="glow-bg-container">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="logo logo-link">
+        <i class="fa-solid fa-screwdriver-wrench icon-gradient"></i>
+        <span class="logo-text">Antii<span class="highlight">Tools</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#tools" class="nav-link">工具</a>
+        <a href="../index.html#guides" class="nav-link">指南</a>
+        <a href="../privacy.html" class="nav-link">隐私</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <article class="content-page guide-page">
+      <span class="eyebrow">Image Guide</span>
+      <h1>如何压缩图片又不明显损失画质</h1>
+      <p>图片压缩不是简单地把质量拉到最低。真正好用的压缩策略，是在文件体积、显示尺寸、图片格式和肉眼清晰度之间找到平衡。</p>
+
+      <section>
+        <h2>先判断图片用途</h2>
+        <p>用于网页首屏、商品图、社交封面和图标的图片，压缩策略并不一样。网页首屏更看重加载速度，商品图更看重细节，社交封面则要兼顾平台二次压缩。</p>
+        <ul>
+          <li>网页配图：优先控制体积，建议使用 WebP 或压缩后的 JPG。</li>
+          <li>截图和 UI 图：线条、文字多时，PNG 或高质量 WebP 更稳。</li>
+          <li>照片：通常 JPG 或 WebP 更适合。</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>质量参数怎么选</h2>
+        <p>大多数浏览器端图片压缩会用 0-100 的质量值。80 左右通常是比较安全的起点，继续降低到 60-70 可以显著减小体积，但照片暗部、渐变和文字边缘可能开始出现瑕疵。</p>
+        <div class="guide-callout">
+          <strong>推荐起点：</strong>普通网页图片用 75-85；缩略图可试 60-75；重要作品图建议 85 以上。
+        </div>
+      </section>
+
+      <section>
+        <h2>格式转换的取舍</h2>
+        <p>WebP 在很多场景下能比 JPG 或 PNG 更小，但如果目标平台不支持 WebP，仍然需要保留 JPG/PNG。透明背景图片如果转成 JPG，会丢失透明通道。</p>
+      </section>
+
+      <section>
+        <h2>压缩前后应该检查什么</h2>
+        <ol>
+          <li>放大查看文字边缘是否糊掉。</li>
+          <li>检查渐变、阴影和暗部是否出现块状噪点。</li>
+          <li>确认透明背景是否仍然透明。</li>
+          <li>比较原图和压缩后的文件体积，避免越压越大。</li>
+        </ol>
+      </section>
+
+      <section class="guide-cta">
+        <h2>开始压缩图片</h2>
+        <p>使用图片极客压缩可以在浏览器中批量处理 JPG、PNG 和 WebP，并对比压缩前后的体积变化。</p>
+        <a href="../image-optimizer-pro/index.html" class="btn-hero btn-hero-primary"><i class="fa-solid fa-image"></i> 打开图片压缩工具</a>
+      </section>
+    </article>
+  </main>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="../about.html">关于我们</a>
+        <a href="../privacy.html">隐私政策</a>
+        <a href="../terms.html">服务条款</a>
+        <a href="../contact.html">联系我们</a>
+      </div>
+      <p>&copy; 2026 Antii Tools.</p>
+    </div>
+  </footer>
+</body>
+</html>

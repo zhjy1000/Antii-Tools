@@ -14,8 +14,14 @@ const firebaseConfig = {
   appId: "YOUR_APP_ID_HERE"
 };
 
+function hasFirebaseConfig(config) {
+  return Object.values(config).every((value) => {
+    return typeof value === 'string' && value && !value.includes('YOUR_');
+  });
+}
+
 // 初始化 Firebase (使用 compat 兼容模式，适合 Vanilla JS 静态网站)
-if (typeof firebase !== 'undefined') {
+if (typeof firebase !== 'undefined' && hasFirebaseConfig(firebaseConfig)) {
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
   }
@@ -23,6 +29,8 @@ if (typeof firebase !== 'undefined') {
   window.firebaseAuth = firebase.auth();
   window.firebaseDb = firebase.firestore();
   console.log("Firebase 实例初始化成功");
+} else if (typeof firebase !== 'undefined') {
+  console.warn("Firebase 配置仍为占位符，已跳过云端登录与会员同步初始化");
 } else {
   console.warn("未检测到 Firebase SDK，请确保在 HTML 中正确加载了 CDN 脚本");
 }
