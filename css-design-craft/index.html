@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS 视觉神匠 - 免费在线 CSS 阴影、毛玻璃与渐变生成器</title>
+  <meta name="description" content="功能强大的前端开发视觉辅助工具。支持实时调整毛玻璃效果 (Backdrop Filter)、精细的 CSS 盒子阴影 (Box Shadow) 及多色渐变背景 (Gradients)，一键复制代码，加速网页设计。">
+  
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="logo-link" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+        <div class="logo">
+          <i class="fa-solid fa-code icon-gradient"></i>
+          <span class="logo-text">CSS<span class="highlight">视觉神匠</span></span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="../qr-code-forge/index.html" class="nav-link"><i class="fa-solid fa-qrcode"></i> 二维码工坊</a>
+        <a href="../image-optimizer-pro/index.html" class="nav-link"><i class="fa-solid fa-image"></i> 图片极客压缩</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 顶部广告位 (728x90) -->
+  <div class="ad-container ad-top-banner">
+    <div class="ad-placeholder">
+      <span class="ad-badge">广告赞助</span>
+      <!-- Google AdSense 广告位 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
+
+  <!-- 主体内容 -->
+  <main class="main-content">
+    <div class="container">
+      <header class="page-header">
+        <h1>CSS 样式视觉神匠</h1>
+        <p>直观、现代的前端样式生成利器。支持毛玻璃、高级投影与炫彩渐变调试，一键复制 CSS 代码。</p>
+      </header>
+
+      <!-- 选项卡切换 -->
+      <div class="tabs-container">
+        <button class="tab-btn active" data-tab="glass">
+          <i class="fa-solid fa-cubes"></i> 毛玻璃效果
+        </button>
+        <button class="tab-btn" data-tab="shadow">
+          <i class="fa-solid fa-circle-half-stroke"></i> 盒子阴影
+        </button>
+        <button class="tab-btn" data-tab="gradient">
+          <i class="fa-solid fa-palette"></i> 炫彩渐变
+        </button>
+      </div>
+
+      <div class="grid-layout">
+        
+        <!-- 左侧：参数控制面板 -->
+        <section class="controls-column">
+          
+          <!-- 1. 毛玻璃控制项 -->
+          <div class="control-card card active" id="controls-glass">
+            <div class="card-header">
+              <i class="fa-solid fa-sliders header-icon"></i>
+              <h2>毛玻璃参数</h2>
+            </div>
+
+            <!-- 背景模糊 -->
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="glass-blur">模糊程度 (Blur)</label>
+                <span id="glass-blur-val">10px</span>
+              </div>
+              <input type="range" id="glass-blur" min="0" max="40" value="10" step="1">
+            </div>
+
+            <!-- 背景不透明度 -->
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="glass-opacity">背景透明度 (Opacity)</label>
+                <span id="glass-opacity-val">20%</span>
+              </div>
+              <input type="range" id="glass-opacity" min="0" max="100" value="20" step="1">
+            </div>
+
+            <!-- 背景颜色 -->
+            <div class="control-group">
+              <label for="glass-color" class="field-label">玻璃底色</label>
+              <div class="color-picker-row">
+                <div class="color-input-container">
+                  <input type="color" id="glass-color" value="#ffffff">
+                  <input type="text" id="glass-color-hex" value="#FFFFFF">
+                </div>
+              </div>
+            </div>
+
+            <!-- 边框不透明度 -->
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="glass-border-opacity">边框透明度 (Border Opacity)</label>
+                <span id="glass-border-opacity-val">10%</span>
+              </div>
+              <input type="range" id="glass-border-opacity" min="0" max="100" value="10" step="1">
+            </div>
+
+            <!-- 圆角半径 -->
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="glass-radius">圆角大小 (Radius)</label>
+                <span id="glass-radius-val">16px</span>
+              </div>
+              <input type="range" id="glass-radius" min="0" max="50" value="16" step="1">
+            </div>
+
+            <!-- 背景图片预设 -->
+            <div class="control-group">
+              <label class="field-label">底图预览预设</label>
+              <div class="preset-grid" id="glass-bg-presets">
+                <button class="preset-btn active" data-bg="gradient" style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);"></button>
+                <button class="preset-btn" data-bg="image1" style="background-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=150&auto=format&fit=crop&q=60'); background-size: cover;"></button>
+                <button class="preset-btn" data-bg="image2" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=150&auto=format&fit=crop&q=60'); background-size: cover;"></button>
+                <button class="preset-btn" data-bg="dark" style="background: #111726;"></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. 阴影控制项 -->
+          <div class="control-card card" id="controls-shadow">
+            <div class="card-header">
+              <i class="fa-solid fa-sliders header-icon"></i>
+              <h2>阴影参数</h2>
+            </div>
+
+            <!-- 偏移 X -->
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="shadow-x">水平偏移 (Offset X)</label>
+                <span id="shadow-x-val">0px</span>
+              </div>
+              <input type="range" id="shadow-x" min="-50" max="50" value="0" step="1">
+            </div>
+
+            <!-- 偏移 Y -->
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="shadow-y">垂直偏移 (Offset Y)</label>
+                <span id="shadow-y-val">15px</span>
+              </div>
+              <input type="range" id="shadow-y" min="-50" max="50" value="15" step="1">
+            </div>
+
+            <!-- 模糊半径 -->
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="shadow-blur">模糊半径 (Blur)</label>
+                <span id="shadow-blur-val">30px</span>
+              </div>
+              <input type="range" id="shadow-blur" min="0" max="100" value="30" step="1">
+            </div>
+
+            <!-- 扩散半径 -->
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="shadow-spread">扩张半径 (Spread)</label>
+                <span id="shadow-spread-val">0px</span>
+              </div>
+              <input type="range" id="shadow-spread" min="-30" max="50" value="0" step="1">
+            </div>
+
+            <!-- 阴影颜色 -->
+            <div class="control-group">
+              <label for="shadow-color" class="field-label">阴影色彩</label>
+              <div class="color-picker-row">
+                <div class="color-input-container">
+                  <input type="color" id="shadow-color" value="#000000">
+                  <input type="text" id="shadow-color-hex" value="#000000">
+                </div>
+              </div>
+            </div>
+
+            <!-- 阴影不透明度 -->
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="shadow-opacity">阴影透明度 (Opacity)</label>
+                <span id="shadow-opacity-val">30%</span>
+              </div>
+              <input type="range" id="shadow-opacity" min="0" max="100" value="30" step="1">
+            </div>
+
+            <!-- 内/外阴影 -->
+            <div class="control-group">
+              <label for="shadow-inset" class="field-label">阴影类型</label>
+              <select id="shadow-inset">
+                <option value="false">外阴影 (Outset)</option>
+                <option value="true">内阴影 (Inset)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 3. 渐变控制项 -->
+          <div class="control-card card" id="controls-gradient">
+            <div class="card-header">
+              <i class="fa-solid fa-sliders header-icon"></i>
+              <h2>渐变参数</h2>
+            </div>
+
+            <!-- 渐变类型 -->
+            <div class="control-group">
+              <label for="grad-type" class="field-label">渐变类型</label>
+              <select id="grad-type">
+                <option value="linear">线性渐变 (Linear)</option>
+                <option value="radial">径向渐变 (Radial)</option>
+              </select>
+            </div>
+
+            <!-- 线性渐变角度 -->
+            <div class="slider-group" id="grad-angle-group">
+              <div class="slider-header">
+                <label for="grad-angle">渐变角度 (Angle)</label>
+                <span id="grad-angle-val">135°</span>
+              </div>
+              <input type="range" id="grad-angle" min="0" max="360" value="135" step="5">
+            </div>
+
+            <!-- 颜色 1 -->
+            <div class="color-stop-row">
+              <div class="color-field">
+                <label>起点颜色 1</label>
+                <div class="color-input-container">
+                  <input type="color" id="grad-color-1" value="#6366f1">
+                  <input type="text" id="grad-color-1-hex" value="#6366F1">
+                </div>
+              </div>
+              <div class="slider-group stop-slider">
+                <div class="slider-header">
+                  <label for="grad-stop-1">位置 1</label>
+                  <span id="grad-stop-1-val">0%</span>
+                </div>
+                <input type="range" id="grad-stop-1" min="0" max="100" value="0" step="1">
+              </div>
+            </div>
+
+            <!-- 颜色 2 -->
+            <div class="color-stop-row">
+              <div class="color-field">
+                <label>终点颜色 2</label>
+                <div class="color-input-container">
+                  <input type="color" id="grad-color-2" value="#a855f7">
+                  <input type="text" id="grad-color-2-hex" value="#A855F7">
+                </div>
+              </div>
+              <div class="slider-group stop-slider">
+                <div class="slider-header">
+                  <label for="grad-stop-2">位置 2</label>
+                  <span id="grad-stop-2-val">100%</span>
+                </div>
+                <input type="range" id="grad-stop-2" min="0" max="100" value="100" step="1">
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 右侧：实时预览与 CSS 导出 -->
+        <section class="preview-column">
+          <div class="preview-card card">
+            <div class="card-header">
+              <i class="fa-solid fa-eye header-icon"></i>
+              <h2>效果预览</h2>
+            </div>
+            
+            <!-- 视觉效果画布 -->
+            <div class="visual-canvas" id="visual-canvas">
+              <div class="preview-target" id="preview-target">
+                <span class="target-label" id="target-label">CSS Card</span>
+              </div>
+            </div>
+
+            <!-- CSS 代码输出 -->
+            <div class="css-output-box">
+              <div class="output-header">
+                <span><i class="fa-solid fa-terminal"></i> CSS 代码</span>
+                <button id="btn-copy-css" class="btn-copy"><i class="fa-solid fa-copy"></i> 复制代码</button>
+              </div>
+              <div class="code-container">
+                <pre><code id="code-content"></code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- 侧边广告位 (300x250) -->
+          <div class="ad-container ad-sidebar">
+            <div class="ad-placeholder">
+              <span class="ad-badge">广告赞助</span>
+              <!-- Google AdSense 广告位 -->
+              <ins class="adsbygoogle"
+                   style="display:block"
+                   data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                   data-ad-slot="XXXXXXXXXX"
+                   data-ad-format="auto"
+                   data-full-width-responsive="true"></ins>
+              <script>
+                   (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- 底部广告位 (728x90) -->
+  <div class="ad-container ad-bottom-banner">
+    <div class="ad-placeholder">
+      <span class="ad-badge">广告赞助</span>
+      <!-- Google AdSense 广告位 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <p>&copy; 2026 CSS 视觉神匠. 免费客户端代码开发工具。快速构建现代 UI 交互元素。</p>
+    </div>
+  </footer>
+
+  <!-- 业务逻辑 JS -->
+  <script src="app.js"></script>
+</body>
+</html>

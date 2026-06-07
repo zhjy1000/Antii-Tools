@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antii Tools - 免费、私密、现代的安迪工具箱</title>
+  <meta name="description" content="专为前端开发者与设计师打造的免费在线工具箱。包含图片本地压缩、二维码工坊、CSS视觉神匠，100% 浏览器本地计算，零服务器上传，完美保护隐私。">
+  
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 头部背景光效装饰 -->
+  <div class="glow-bg-container">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+  </div>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <i class="fa-solid fa-screwdriver-wrench icon-gradient"></i>
+        <span class="logo-text">Antii<span class="highlight">Tools</span></span>
+      </div>
+      <div class="nav-links">
+        <span class="badge badge-online"><i class="fa-solid fa-wifi"></i> 纯本地离线运行</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 顶部广告位 (728x90) -->
+  <div class="ad-container ad-top-banner">
+    <div class="ad-placeholder">
+      <span class="ad-badge">广告赞助</span>
+      <!-- Google AdSense 广告位 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
+
+  <!-- 主体内容 -->
+  <main class="main-content">
+    <div class="container">
+      <header class="page-header">
+        <h1 class="animate-gradient-text">安迪效率工具箱</h1>
+        <p>100% 浏览器本地计算，所有数据绝不上传服务器。轻量、高效、安全的前端与设计辅助神器。</p>
+      </header>
+
+      <!-- 工具卡片网格 -->
+      <div class="tools-grid">
+        
+        <!-- 卡片 1: 图片极客压缩 -->
+        <a href="image-optimizer-pro/index.html" class="tool-card card-hover-1">
+          <div class="card-icon-wrapper icon-orange">
+            <i class="fa-solid fa-image"></i>
+          </div>
+          <div class="card-body">
+            <h3>图片极客压缩 <span class="hot-badge">推荐</span></h3>
+            <p>基于纯浏览器端的高效图片优化方案。支持批量压缩 PNG/JPG/WebP 格式，自定义输出质量，零带宽损耗，100% 隐私保护。</p>
+            <div class="card-footer-info">
+              <span><i class="fa-solid fa-shield-halved"></i> 纯本地处理</span>
+              <span class="arrow-icon">进入工具 <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 卡片 2: 二维码工坊 -->
+        <a href="qr-code-forge/index.html" class="tool-card card-hover-2">
+          <div class="card-icon-wrapper icon-blue">
+            <i class="fa-solid fa-qrcode"></i>
+          </div>
+          <div class="card-body">
+            <h3>二维码工坊</h3>
+            <p>免费生成与设计专属艺术二维码。支持自定义前景色、背景色，上传中心 Logo，精准调整纠错级别，一键导出高清 PNG 或 SVG 代码。</p>
+            <div class="card-footer-info">
+              <span><i class="fa-solid fa-palette"></i> 高度可定制</span>
+              <span class="arrow-icon">进入工具 <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 卡片 3: CSS 视觉神匠 -->
+        <a href="css-design-craft/index.html" class="tool-card card-hover-3">
+          <div class="card-icon-wrapper icon-purple">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <div class="card-body">
+            <h3>CSS 视觉神匠</h3>
+            <p>前端开发视觉调试辅助利器。直观调整毛玻璃效果（Backdrop Filter）、盒子高级投影阴影及炫彩多色渐变，一键复制代码。</p>
+            <div class="card-footer-info">
+              <span><i class="fa-solid fa-bolt"></i> 实时复制 CSS</span>
+              <span class="arrow-icon">进入工具 <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- 隐私与安全说明区块 -->
+      <section class="privacy-section card">
+        <div class="privacy-header">
+          <i class="fa-solid fa-lock privacy-icon"></i>
+          <h2>隐私与安全承诺</h2>
+        </div>
+        <p>
+          本工具箱内所有工具（包括图片压缩、二维码绘制、样式调试）全部使用先进的 **HTML5 API**、**Canvas** 与本地加密压缩算法在您的浏览器内实时处理。
+          我们 **不设立任何后端上传服务器**，因此您的任何文件、Logo 和设计数据绝对不会离开您的电脑，100% 物理隔离，安全无忧。
+        </p>
+      </section>
+
+      <!-- 中部横幅广告位 (728x90 或 300x250 自适应) -->
+      <div class="ad-container ad-mid-banner">
+        <div class="ad-placeholder">
+          <span class="ad-badge">广告赞助</span>
+          <!-- Google AdSense 广告位 -->
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+               data-ad-slot="XXXXXXXXXX"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>
+               (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 底部广告位 (728x90) -->
+  <div class="ad-container ad-bottom-banner">
+    <div class="ad-placeholder">
+      <span class="ad-badge">广告赞助</span>
+      <!-- Google AdSense 广告位 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <p>&copy; 2026 Antii Tools 安迪网页工具箱. 免费、本地、安全的开发者生产力辅助套件。</p>
+    </div>
+  </footer>
+
+  <!-- Google AdSense 异步加载脚本 -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</body>
+</html>

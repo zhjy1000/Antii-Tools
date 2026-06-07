@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>二维码工坊 - 免费生成个性化艺术二维码</title>
+  <meta name="description" content="免费且安全的纯前端二维码在线生成工具。支持自定义前景色、背景色，可上传并嵌入中心 logo，调整纠错等级，一键快速下载高清 PNG 或复制 SVG 源码。">
+  
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="logo-link" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+        <div class="logo">
+          <i class="fa-solid fa-qrcode icon-gradient"></i>
+          <span class="logo-text">二维码<span class="highlight">工坊</span></span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="../image-optimizer-pro/index.html" class="nav-link"><i class="fa-solid fa-image"></i> 图片极客压缩</a>
+        <a href="../css-design-craft/index.html" class="nav-link"><i class="fa-solid fa-code"></i> CSS 视觉神匠</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 顶部广告位 (728x90) -->
+  <div class="ad-container ad-top-banner">
+    <div class="ad-placeholder">
+      <span class="ad-badge">广告赞助</span>
+      <!-- Google AdSense 广告位 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
+
+  <!-- 主体内容 -->
+  <main class="main-content">
+    <div class="container">
+      <header class="page-header">
+        <h1>设计个性化二维码</h1>
+        <p>免费、安全、快速地在线创建和设计您的专属二维码。支持自定义色彩、嵌入 Logo 并导出高清格式。</p>
+      </header>
+
+      <div class="grid-layout">
+        
+        <!-- 左栏：控制与配置 -->
+        <section class="controls-card card">
+          <div class="card-header">
+            <i class="fa-solid fa-sliders header-icon"></i>
+            <h2>配置面板</h2>
+          </div>
+          
+          <div class="control-group">
+            <label for="qr-content" class="field-label">输入内容 / 网址</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-link input-icon"></i>
+              <input type="text" id="qr-content" placeholder="https://example.com" value="https://google.com">
+            </div>
+            <p class="field-help">支持输入网站链接、文本、电话号码或电子邮件地址。</p>
+          </div>
+
+          <div class="accordion">
+            <!-- 样式与色彩设计 -->
+            <div class="accordion-item active">
+              <button class="accordion-header">
+                <span><i class="fa-solid fa-palette"></i> 色彩与外观</span>
+                <i class="fa-solid fa-chevron-down chevron"></i>
+              </button>
+              <div class="accordion-content">
+                <div class="color-picker-grid">
+                  <div class="color-field">
+                    <label for="color-foreground">前景色 (码点颜色)</label>
+                    <div class="color-input-container">
+                      <input type="color" id="color-foreground" value="#0f172a">
+                      <input type="text" id="color-foreground-hex" value="#0F172A">
+                    </div>
+                  </div>
+                  <div class="color-field">
+                    <label for="color-background">背景色</label>
+                    <div class="color-input-container">
+                      <input type="color" id="color-background" value="#ffffff">
+                      <input type="text" id="color-background-hex" value="#FFFFFF">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="slider-group">
+                  <div class="slider-header">
+                    <label for="qr-margin">静区边距 (Margin)</label>
+                    <span id="qr-margin-val">3</span>
+                  </div>
+                  <input type="range" id="qr-margin" min="0" max="8" value="3" step="1">
+                </div>
+
+                <div class="slider-group">
+                  <div class="slider-header">
+                    <label for="qr-error-level">容错与纠错等级</label>
+                    <span id="qr-error-val">高 (30%)</span>
+                  </div>
+                  <select id="qr-error-level">
+                    <option value="L">低 (7%)</option>
+                    <option value="M">中 (15%)</option>
+                    <option value="Q">较高 (25%)</option>
+                    <option value="H" selected>高 (30%)</option>
+                  </select>
+                  <p class="field-help">容错率越高，即使二维码被遮挡或嵌入 Logo 也能更轻松被手机扫描识别。</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Logo 上传 -->
+            <div class="accordion-item">
+              <button class="accordion-header">
+                <span><i class="fa-solid fa-image"></i> 品牌 Logo (可选)</span>
+                <i class="fa-solid fa-chevron-down chevron"></i>
+              </button>
+              <div class="accordion-content">
+                <div class="logo-upload-area" id="logo-dropzone">
+                  <input type="file" id="logo-file" accept="image/*" class="file-input-hidden">
+                  <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                  <p class="upload-text">拖拽图片到此处，或 <span>点击浏览</span></p>
+                  <p class="upload-limits">支持 PNG, JPG 或 SVG (推荐使用透明背景的 Logo 图片)</p>
+                </div>
+
+                <div class="logo-preview-container hidden" id="logo-preview-wrapper">
+                  <div class="logo-preview-card">
+                    <img id="logo-preview-img" src="" alt="上传的 Logo 预览">
+                    <div class="logo-preview-details">
+                      <span id="logo-filename">logo.png</span>
+                      <button type="button" id="remove-logo-btn" class="btn-icon" title="删除 Logo"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                  </div>
+
+                  <div class="slider-group">
+                    <div class="slider-header">
+                      <label for="logo-size">Logo 缩放比例</label>
+                      <span id="logo-size-val">20%</span>
+                    </div>
+                    <input type="range" id="logo-size" min="10" max="30" value="20" step="1">
+                    <p class="field-help">注意：Logo 比例过大可能导致部分扫描器无法成功识别二维码。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 右栏：实时预览与下载 -->
+        <section class="preview-column">
+          <div class="preview-card card">
+            <div class="card-header">
+              <i class="fa-solid fa-eye header-icon"></i>
+              <h2>实时预览</h2>
+            </div>
+            
+            <div class="preview-display">
+              <div class="qr-canvas-wrapper" id="canvas-wrapper">
+                <!-- 由 JavaScript 渲染二维码画布 -->
+                <canvas id="qr-canvas"></canvas>
+              </div>
+              <div class="scan-overlay">
+                <i class="fa-solid fa-expand scan-corner top-left"></i>
+                <i class="fa-solid fa-expand scan-corner top-right"></i>
+                <i class="fa-solid fa-expand scan-corner bottom-left"></i>
+                <i class="fa-solid fa-expand scan-corner bottom-right"></i>
+              </div>
+            </div>
+
+            <div class="action-buttons">
+              <button id="btn-download-png" class="btn btn-primary">
+                <i class="fa-solid fa-file-arrow-down"></i> 下载 PNG 图片
+              </button>
+              <button id="btn-download-svg" class="btn btn-outline">
+                <i class="fa-solid fa-copy"></i> 复制 SVG 源码
+              </button>
+            </div>
+          </div>
+
+          <!-- 侧边广告位 (300x250) -->
+          <div class="ad-container ad-sidebar">
+            <div class="ad-placeholder">
+              <span class="ad-badge">广告赞助</span>
+              <!-- Google AdSense 广告位 -->
+              <ins class="adsbygoogle"
+                   style="display:block"
+                   data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                   data-ad-slot="XXXXXXXXXX"
+                   data-ad-format="auto"
+                   data-full-width-responsive="true"></ins>
+              <script>
+                   (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </div>
+          </div>
+
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- 底部广告位 (728x90) -->
+  <div class="ad-container ad-bottom-banner">
+    <div class="ad-placeholder">
+      <span class="ad-badge">广告赞助</span>
+      <!-- Google AdSense 广告位 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <p>&copy; 2026 二维码工坊. 纯客户端安全工具，所有计算均在您的浏览器本地进行，绝不上传您的任何数据。</p>
+    </div>
+  </footer>
+
+  <!-- 订阅/付费弹窗 -->
+  <div class="modal hidden" id="paywall-modal">
+    <div class="modal-backdrop" id="paywall-backdrop"></div>
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-crown text-yellow"></i> 升级到安迪专业版 (Pro)</h3>
+        <button id="btn-close-paywall" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body paywall-body">
+        <p class="paywall-subtitle">您正在使用专业版特权功能。升级到 Pro 解锁全部限制，支持我们的开发！</p>
+        
+        <!-- 对比表格 -->
+        <table class="paywall-table">
+          <thead>
+            <tr>
+              <th>功能对比</th>
+              <th>免费版</th>
+              <th>专业版 (Pro)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>静态二维码生成</td>
+              <td>支持</td>
+              <td class="highlight-emerald font-bold">支持</td>
+            </tr>
+            <tr>
+              <td>自定义中心 Logo</td>
+              <td>不支持</td>
+              <td class="highlight-emerald font-bold">支持 (上传任意图片)</td>
+            </tr>
+            <tr>
+              <td>高纠错等级 (30%)</td>
+              <td>不支持 (仅限 7%-25%)</td>
+              <td class="highlight-emerald font-bold">支持 (容错率更高)</td>
+            </tr>
+            <tr>
+              <td>动态二维码 (Scan Track)</td>
+              <td>不支持</td>
+              <td class="highlight-emerald font-bold">支持 (随时修改跳转链接)</td>
+            </tr>
+            <tr>
+              <td>服务器上传</td>
+              <td colspan="2" class="center-text">100% 浏览器本地处理，安全隐私</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 价格方案卡片 -->
+        <div class="price-cards">
+          <div class="price-card active" data-price="9.9">
+            <span class="price-badge">推荐</span>
+            <h4>月度订阅</h4>
+            <div class="price">
+              <span class="currency">¥</span><span class="amount">9.9</span><span class="period">/月</span>
+            </div>
+            <p>随时取消，轻度用户首选</p>
+          </div>
+          <div class="price-card" data-price="49">
+            <h4>终身买断</h4>
+            <div class="price">
+              <span class="currency">¥</span><span class="amount">49</span><span class="period">/终身</span>
+            </div>
+            <p>一次付费，永久免费更新</p>
+          </div>
+        </div>
+
+        <!-- 支付选项 -->
+        <div class="payment-methods">
+          <button class="pay-method-btn active" data-method="alipay">
+            <i class="fa-brands fa-alipay alipay-color"></i> 支付宝
+          </button>
+          <button class="pay-method-btn" data-method="wechat">
+            <i class="fa-brands fa-weixin wechat-color"></i> 微信支付
+          </button>
+        </div>
+
+        <!-- 模拟扫码区域 -->
+        <div class="qr-pay-section">
+          <div class="pay-qr-container">
+            <div class="mock-qr" id="mock-pay-qr">
+              <!-- JS 渲染支付二维码 -->
+              <i class="fa-solid fa-qrcode"></i>
+            </div>
+            <p class="qr-tip">请使用手机扫码支付 (测试模式)</p>
+          </div>
+          <div class="pay-actions">
+            <button id="btn-simulate-success" class="btn btn-primary btn-pay-success">
+              <i class="fa-solid fa-circle-check"></i> 我已完成支付 (模拟测试)
+            </button>
+            <p class="pay-security-tip"><i class="fa-solid fa-shield-halved"></i> 支付由安全沙箱模拟提供，不会扣除真实费用</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CDN 二维码库 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
+  <!-- 业务逻辑 JS -->
+  <script src="app.js"></script>
+</body>
+</html>

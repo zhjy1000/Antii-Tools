@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图片极客压缩 - 免费批量在线图片压缩与格式转换</title>
+  <meta name="description" content="免费、安全且私密的纯客户端在线图片压缩工具。支持批量压缩 JPG、PNG、WebP 格式，自定义压缩质量与输出格式，无服务器上传，100% 保护隐私。">
+  
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="logo-link" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+        <div class="logo">
+          <i class="fa-solid fa-image icon-gradient"></i>
+          <span class="logo-text">图片<span class="highlight">极客压缩</span></span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="../qr-code-forge/index.html" class="nav-link"><i class="fa-solid fa-qrcode"></i> 二维码工坊</a>
+        <a href="../css-design-craft/index.html" class="nav-link"><i class="fa-solid fa-code"></i> CSS 视觉神匠</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 顶部广告位 (728x90) -->
+  <div class="ad-container ad-top-banner">
+    <div class="ad-placeholder">
+      <span class="ad-badge">广告赞助</span>
+      <!-- Google AdSense 广告位 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
+
+  <!-- 主体内容 -->
+  <main class="main-content">
+    <div class="container">
+      <header class="page-header">
+        <h1>批量图片压缩与格式转换</h1>
+        <p>安全无痕的纯客户端图片优化工具。所有压缩与转换均在浏览器本地完成，图片绝不上传服务器，保护您的隐私与带宽。</p>
+      </header>
+
+      <!-- 拖拽上传区 -->
+      <section class="upload-section card">
+        <div class="dropzone" id="image-dropzone">
+          <input type="file" id="image-file-input" accept="image/png, image/jpeg, image/webp" multiple class="file-input-hidden">
+          <i class="fa-solid fa-images upload-icon"></i>
+          <h3>拖拽多张图片到此处，或 <span>点击浏览</span></h3>
+          <p>支持 PNG, JPG, JPEG, WebP 格式（可一次选择多张图片）</p>
+        </div>
+      </section>
+
+      <!-- 列表与控制区 (上传后显示) -->
+      <div class="workspace-layout hidden" id="workspace-layout">
+        
+        <!-- 左侧：全局控制面板 -->
+        <section class="settings-column">
+          <div class="settings-card card">
+            <div class="card-header">
+              <i class="fa-solid fa-sliders header-icon"></i>
+              <h2>全局设置</h2>
+            </div>
+
+            <!-- 全局质量 -->
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="global-quality">压缩质量 (Quality)</label>
+                <span id="global-quality-val">80%</span>
+              </div>
+              <input type="range" id="global-quality" min="10" max="100" value="80" step="5">
+            </div>
+
+            <!-- 全局格式 -->
+            <div class="control-group">
+              <label for="global-format" class="field-label">输出目标格式</label>
+              <select id="global-format">
+                <option value="original">保持原格式</option>
+                <option value="jpeg">转换为 JPEG</option>
+                <option value="png">转换为 PNG</option>
+                <option value="webp">转换为 WebP (推荐)</option>
+              </select>
+            </div>
+
+            <!-- 统计看板 -->
+            <div class="stats-panel">
+              <div class="stat-box">
+                <span class="stat-title">已选文件</span>
+                <span class="stat-number" id="stat-count">0</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-title">节省空间</span>
+                <span class="stat-number highlight-emerald" id="stat-savings">0%</span>
+              </div>
+              <div class="stat-box total-saving">
+                <span class="stat-title">已减小体积</span>
+                <span class="stat-number" id="stat-saved-bytes">0 KB</span>
+              </div>
+            </div>
+
+            <!-- 批量操作按钮 -->
+            <div class="action-buttons">
+              <button id="btn-download-all" class="btn btn-primary">
+                <i class="fa-solid fa-file-zipper"></i> 打包下载 ZIP
+              </button>
+              <button id="btn-clear-all" class="btn btn-outline">
+                <i class="fa-solid fa-trash-can"></i> 清空列表
+              </button>
+            </div>
+          </div>
+
+          <!-- 侧边广告位 (300x250) -->
+          <div class="ad-container ad-sidebar">
+            <div class="ad-placeholder">
+              <span class="ad-badge">广告赞助</span>
+              <!-- Google AdSense 广告位 -->
+              <ins class="adsbygoogle"
+                   style="display:block"
+                   data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                   data-ad-slot="XXXXXXXXXX"
+                   data-ad-format="auto"
+                   data-full-width-responsive="true"></ins>
+              <script>
+                   (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </div>
+          </div>
+        </section>
+
+        <!-- 右侧：图片处理列表 -->
+        <section class="list-column card">
+          <div class="card-header">
+            <i class="fa-solid fa-list-check header-icon"></i>
+            <h2>处理队列</h2>
+          </div>
+          
+          <div class="image-list-container" id="image-list-container">
+            <!-- 动态生成的图片处理项 -->
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 实时对比弹窗 (Modal) -->
+  <div class="modal hidden" id="comparison-modal">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-wrapper">
+      <div class="modal-header">
+        <h3 id="modal-filename">图片对比</h3>
+        <button id="btn-close-modal" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="comparison-container">
+          <div class="compare-side">
+            <span class="compare-badge badge-gray">原始图 (<span id="compare-orig-size">0 KB</span>)</span>
+            <div class="compare-img-wrap">
+              <img id="compare-orig-img" src="" alt="Original Image">
+            </div>
+          </div>
+          <div class="compare-side">
+            <span class="compare-badge badge-emerald">压缩后 (<span id="compare-comp-size">0 KB</span>, 减小 <span id="compare-savings">0%</span>)</span>
+            <div class="compare-img-wrap">
+              <img id="compare-comp-img" src="" alt="Compressed Image">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部广告位 (728x90) -->
+  <div class="ad-container ad-bottom-banner">
+    <div class="ad-placeholder">
+      <span class="ad-badge">广告赞助</span>
+      <!-- Google AdSense 广告位 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <p>&copy; 2026 图片极客压缩. 纯客户端安全工具，所有计算均在您的浏览器本地进行，绝不上传您的任何数据。</p>
+    </div>
+  </footer>
+
+  <!-- 订阅/付费弹窗 -->
+  <div class="modal hidden" id="paywall-modal">
+    <div class="modal-backdrop" id="paywall-backdrop"></div>
+    <div class="modal-wrapper paywall-wrapper">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-crown text-yellow"></i> 升级到安迪专业版 (Pro)</h3>
+        <button id="btn-close-paywall" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body paywall-body">
+        <p class="paywall-subtitle">您已达到免费版的单次处理限制。升级到 Pro 解锁全部功能，支持我们的开发！</p>
+        
+        <!-- 对比表格 -->
+        <table class="paywall-table">
+          <thead>
+            <tr>
+              <th>功能对比</th>
+              <th>免费版</th>
+              <th>专业版 (Pro)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>单次图片数量限制</td>
+              <td>5 张</td>
+              <td class="highlight-emerald font-bold">无限批量</td>
+            </tr>
+            <tr>
+              <td>单张图片大小限制</td>
+              <td>5 MB</td>
+              <td class="highlight-emerald font-bold">无限制 (支持大图)</td>
+            </tr>
+            <tr>
+              <td>格式转换支持</td>
+              <td>JPG / PNG / WebP</td>
+              <td class="highlight-emerald font-bold">JPG / PNG / WebP / AVIF (更高效)</td>
+            </tr>
+            <tr>
+              <td>服务器上传</td>
+              <td colspan="2" class="center-text">100% 浏览器本地处理，安全隐私</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 价格方案卡片 -->
+        <div class="price-cards">
+          <div class="price-card active" data-price="9.9">
+            <span class="price-badge">推荐</span>
+            <h4>月度订阅</h4>
+            <div class="price">
+              <span class="currency">¥</span><span class="amount">9.9</span><span class="period">/月</span>
+            </div>
+            <p>随时取消，轻度用户首选</p>
+          </div>
+          <div class="price-card" data-price="49">
+            <h4>终身买断</h4>
+            <div class="price">
+              <span class="currency">¥</span><span class="amount">49</span><span class="period">/终身</span>
+            </div>
+            <p>一次付费，永久免费更新</p>
+          </div>
+        </div>
+
+        <!-- 支付选项 -->
+        <div class="payment-methods">
+          <button class="pay-method-btn active" data-method="alipay">
+            <i class="fa-brands fa-alipay alipay-color"></i> 支付宝
+          </button>
+          <button class="pay-method-btn" data-method="wechat">
+            <i class="fa-brands fa-weixin wechat-color"></i> 微信支付
+          </button>
+        </div>
+
+        <!-- 模拟扫码区域 -->
+        <div class="qr-pay-section">
+          <div class="pay-qr-container">
+            <div class="mock-qr" id="mock-pay-qr">
+              <!-- JS 渲染支付二维码 -->
+              <i class="fa-solid fa-qrcode"></i>
+            </div>
+            <p class="qr-tip">请使用手机扫码支付 (测试模式)</p>
+          </div>
+          <div class="pay-actions">
+            <button id="btn-simulate-success" class="btn btn-primary btn-pay-success">
+              <i class="fa-solid fa-circle-check"></i> 我已完成支付 (模拟测试)
+            </button>
+            <p class="pay-security-tip"><i class="fa-solid fa-shield-halved"></i> 支付由安全沙箱模拟提供，不会扣除真实费用</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JSZip 库，用以在浏览器本地生成 ZIP 压缩包 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <!-- 业务逻辑 JS -->
+  <script src="app.js"></script>
+</body>
+</html>
