@@ -60,26 +60,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Premium Helper functions & UI Badge
-  const isPremiumUser = localStorage.getItem('geek_tools_premium') === 'true';
-  if (isPremiumUser) {
-    const navLinks = document.querySelector('.nav-links');
-    if (navLinks) {
-      navLinks.insertAdjacentHTML('afterbegin', `
-        <span class="badge-premium" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #1e293b; padding: 6px 12px; border-radius: 30px; font-size: 0.8rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; margin-right: 15px; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);">
-          <i class="fa-solid fa-crown"></i> 专业版 Pro
-        </span>
-      `);
-    }
-  }
-
   // Handle uploaded files
   function handleFiles(files) {
     const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
     let addedAny = false;
 
-    // Local Freemium checks
-    if (!isPremiumUser) {
+    // Cloud-synced/Local Freemium checks
+    const isPremium = window.currentUserState ? window.currentUserState.isPremium : (localStorage.getItem('geek_tools_premium') === 'true');
+    if (!isPremium) {
       // 1. File count limit: max 5 files total
       if (filesList.length + files.length > 5) {
         showPaywall();
@@ -515,8 +503,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (btnSimulateSuccess) {
-    btnSimulateSuccess.addEventListener('click', () => {
-      localStorage.setItem('geek_tools_premium', 'true');
+    btnSimulateSuccess.addEventListener('click', async () => {
+      if (window.setUserPremiumStatus) {
+        await window.setUserPremiumStatus(true);
+      } else {
+        localStorage.setItem('geek_tools_premium', 'true');
+      }
       alert('恭喜！您已成功模拟支付解锁 Antii Tools 专业版 Pro！页面即将刷新以生效特权。');
       closePaywall();
       location.reload();

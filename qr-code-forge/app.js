@@ -27,17 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let logoImage = null;
   let logoName = '';
 
-  // Premium Helper functions & UI Badge
-  const isPremiumUser = localStorage.getItem('geek_tools_premium') === 'true';
-  if (isPremiumUser) {
-    const navLinks = document.querySelector('.nav-links');
-    if (navLinks) {
-      navLinks.insertAdjacentHTML('afterbegin', `
-        <span class="badge-premium" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #1e293b; padding: 6px 12px; border-radius: 30px; font-size: 0.8rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; margin-right: 15px; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);">
-          <i class="fa-solid fa-crown"></i> 专业版 Pro
-        </span>
-      `);
-    }
+  // Helper to check premium status dynamically (Cloud-synced or Local fallback)
+  function isPremium() {
+    return window.currentUserState ? window.currentUserState.isPremium : (localStorage.getItem('geek_tools_premium') === 'true');
   }
   
   // Accordion Logic
@@ -89,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Error Correction Sync
   let lastErrorLevel = qrErrorLevelSelect.value;
   qrErrorLevelSelect.addEventListener('change', () => {
-    if (!isPremiumUser && qrErrorLevelSelect.value === 'H') {
+    if (!isPremium() && qrErrorLevelSelect.value === 'H') {
       showPaywall();
       qrErrorLevelSelect.value = lastErrorLevel;
       return;
@@ -137,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function handleLogoFile(file) {
-    if (!isPremiumUser) {
+    if (!isPremium()) {
       showPaywall();
       logoFileInput.value = '';
       return;
@@ -342,8 +334,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (btnSimulateSuccess) {
-    btnSimulateSuccess.addEventListener('click', () => {
-      localStorage.setItem('geek_tools_premium', 'true');
+    btnSimulateSuccess.addEventListener('click', async () => {
+      if (window.setUserPremiumStatus) {
+        await window.setUserPremiumStatus(true);
+      } else {
+        localStorage.setItem('geek_tools_premium', 'true');
+      }
       alert('恭喜！您已成功模拟支付解锁 Antii Tools 专业版 Pro！页面即将刷新以生效特权。');
       closePaywall();
       location.reload();
